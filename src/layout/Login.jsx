@@ -1,23 +1,54 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
+import toast from 'react-hot-toast';
+
 
 const Login = () => {
+    const { LoginUser, setUser } = useContext(AuthContext);
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.target);
+        const email = form.get('email')
+        const password = form.get('password');
+
+        console.log(email, password);
+        LoginUser(email, password)
+            .then(res => {
+                setUser(res.user);
+                toast.success('Successfully logged in to your account!');
+            })
+            .catch(err => {
+                console.log( "ERROR", err.message);
+                toast.error(err.message);
+                setUser(null)
+            })
+    }
     return (
         <div className='flex justify-center items-center min-h-[90vh]'>
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-14">
                 <h2 className='text-3xl md:text-4xl font-bold text-[#403F3F] text-center mb-3'>Login your account</h2>
                 <div className="divider"></div>
-                <form className="card-body p-0">
+                <form onSubmit={handleLogin} className="card-body p-0">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Email Address</span>
                         </label>
-                        <input type="email" placeholder="Enter your email address" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name='email'
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Password</span>
                         </label>
-                        <input type="password" placeholder="Enter your password" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name='password'
+                            type="password"
+                            placeholder="Enter your password"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control my-6">
                         <button className="btn btn-neutral rounded-[5px] font-semibold text-xl">Login</button>

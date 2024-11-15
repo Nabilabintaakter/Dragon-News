@@ -1,12 +1,8 @@
-import { useState } from "react";
+
 import { FaStar, FaEye, FaShareAlt, FaBookmark } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 
 const NewsCard = (props = {}) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-    const toggleReadMore = () => {
-        setIsExpanded(!isExpanded);
-    };
 
     const { news } = props || {};
 
@@ -48,10 +44,8 @@ const NewsCard = (props = {}) => {
             {/* Details */}
             <div className="px-5 pt-4">
                 <p className="text-sm text-[#888787]">
-                    {isExpanded ? news.details : `${news.details.split(" ").slice(0, 50).join(" ")}...`}
-                    <span onClick={toggleReadMore} className="text-[#FF8C47] cursor-pointer ml-1 font-semibold">
-                        {isExpanded ? "Show Less" : "Read More"}
-                    </span>
+                    {news.details.slice(0, 150)}...{" "}
+                    <span className="text-[#FF8C47] cursor-pointer ml-1 font-semibold">Read More</span>
                 </p>
             </div>
 
