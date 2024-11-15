@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import user from '../assets/user.png';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
+    const {user} = useContext(AuthContext);
     return (
         <div className='flex justify-between items-center font-poppins px-4 md:px-0'>
             <div >
-                <p className='text-transparent hidden md:block'>Lorem ipsum dolor sit a</p>
+                <p className=''>{user && user.name}</p>
             </div>
             <div className='space-x-2 text-lg text-[#706F6F]'>
                 <NavLink className='nav px-2 md:px-4 py-2 hover:bg-[#E7E7E7] rounded-lg' to='/'>Home</NavLink>

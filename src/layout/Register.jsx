@@ -1,36 +1,73 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 
 const Register = () => {
+    const {createNewUser,setUser} = useContext(AuthContext);
+    const handleSubmit =(e)=>{
+        e.preventDefault();
+        // get form data
+        const form = new FormData(e.target);
+        const name = form.get('name')
+        const email = form.get('email')
+        const photo = form.get('photo')
+        const password = form.get('password')
+
+        createNewUser(email,password)
+        .then(res=> {
+            setUser(res.user);
+        })
+        .catch(err=>{
+            console.log(err.message);
+            setUser(null)
+        })
+    }
     return (
         <div className='flex justify-center items-center min-h-[90vh]'>
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-14">
                 <h2 className='text-3xl md:text-4xl font-bold text-[#403F3F] text-center mb-3'>Register your account</h2>
                 <div className="divider"></div>
-                <form className="card-body p-0">
+                <form onSubmit={handleSubmit} className="card-body p-0">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Your Name</span>
                         </label>
-                        <input type="text" placeholder="Enter your name" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input 
+                        name="name"
+                        type="text"  
+                        placeholder="Enter your name" 
+                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Photo URL</span>
                         </label>
-                        <input type="text" placeholder="Enter your photo url" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input 
+                        name="photo"
+                        type="text" 
+                        placeholder="Enter your photo url" 
+                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Email</span>
                         </label>
-                        <input type="email" placeholder="Enter your email address" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input 
+                        name="email"
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Password</span>
                         </label>
-                        <input type="password" placeholder="Enter your password" className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input 
+                        name="password"
+                        type="password" 
+                        placeholder="Enter your password" 
+                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label justify-start gap-3 cursor-pointer">
