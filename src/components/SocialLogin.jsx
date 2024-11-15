@@ -6,8 +6,8 @@ const SocialLogin = () => {
         <div className="">
             <h2 className='text-[#403F3F] text-xl font-semibold mb-5'> Login With</h2>
             <div className='w-full space-y-2'>
-                <NavLink className='flex btn w-full bg-white border-[1px] hover:bg-[#4371BD] hover:text-white border-[#4371BD] text-[#4371BD]'><FaGoogle></FaGoogle>Login with Google</NavLink>
-                <NavLink className='flex btn w-full bg-white border-[1px] hover:bg-black hover:text-white border-gray-500'><FaGithub></FaGithub>Login with Github</NavLink>
+                <NavLink className='flex items-center btn w-full bg-white border-[1px] hover:bg-[#4371BD] hover:text-white border-[#4371BD] text-[#4371BD] text-base md:text-xs lg:text-base'><FaGoogle className="text-base md:text-xs lg:text-base"></FaGoogle>Login with Google</NavLink>
+                <NavLink className='flex items-center btn w-full bg-white border-[1px] hover:bg-black hover:text-white border-gray-500 text-base md:text-xs lg:text-base'><FaGithub className="text-sm md:text-xs lg:text-sm"></FaGithub>Login with Github</NavLink>
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 
 import { FaStar, FaEye, FaShareAlt, FaBookmark } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
+import { Link } from "react-router-dom";
 
 const NewsCard = (props = {}) => {
 
@@ -36,7 +37,7 @@ const NewsCard = (props = {}) => {
 
             {/* Thumbnail */}
             <img
-                className="w-full h-[262px] object-cover px-5"
+                className="w-full h-auto md:h-[600px] object-contain px-5"
                 src={news.thumbnail_url}
                 alt="thumbnail"
             />
@@ -45,7 +46,7 @@ const NewsCard = (props = {}) => {
             <div className="px-5 pt-4">
                 <p className="text-sm text-[#888787]">
                     {news.details.slice(0, 150)}...{" "}
-                    <span className="text-[#FF8C47] cursor-pointer ml-1 font-semibold">Read More</span>
+                    <Link to={`/news/${news._id}`} className="text-[#FF8C47] cursor-pointer ml-1 font-semibold">Read More</Link>
                 </p>
             </div>
 

@@ -3,13 +3,14 @@ import {
     Navigate,
 } from "react-router-dom";
 import HomeLayout from "../layout/HomeLayout";
-import News from "../layout/News";
+import News from "../layout/NewsDetails";
 import About from "../layout/About";
 import Career from "../layout/Career";
 import Login from "../layout/Login";
 import MainSection from "../components/layoutComponents/mainSection";
 import AuthLayout from "../layout/AuthLayout";
 import Register from "../layout/Register";
+import NewsDetails from "../layout/NewsDetails";
 
 const router = createBrowserRouter([
     {
@@ -28,8 +29,9 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/news",
-        element: <News></News>,
+        path: "/news/:id",
+        element: <NewsDetails></NewsDetails>,
+        loader: ({params})=> fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
     },
     {
         path: "/about",
