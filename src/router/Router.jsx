@@ -8,6 +8,8 @@ import About from "../layout/About";
 import Career from "../layout/Career";
 import Login from "../layout/Login";
 import MainSection from "../components/layoutComponents/mainSection";
+import AuthLayout from "../layout/AuthLayout";
+import Register from "../layout/Register";
 
 const router = createBrowserRouter([
     {
@@ -38,8 +40,18 @@ const router = createBrowserRouter([
         element: <Career></Career>,
     },
     {
-        path: "/login",
-        element: <Login></Login>,
+        path: "/auth",
+        element: <AuthLayout></AuthLayout>,
+        children:[
+            {
+                path: "/auth/login",
+                element: <Login></Login>,   
+            },
+            {
+                path: "/auth/register",
+                element: <Register></Register>,   
+            }
+        ]
     },
     {
         path: "*",
