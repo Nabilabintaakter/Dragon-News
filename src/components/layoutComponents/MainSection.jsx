@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import NewsCard from '../NewsCard';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const MainSection = () => {
+    const {setLatest} = useContext(AuthContext);
     const {data : news} = useLoaderData()
+
+    useEffect(()=>{
+        setLatest(news)
+    },[news])
     return (
         <div>
            <h2 className='text-[#403F3F] text-xl font-semibold mb-3 px-4 md:px-0'>Dragon News Home</h2>
