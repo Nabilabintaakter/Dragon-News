@@ -1,8 +1,27 @@
-# React + Vite
+# Project Documentation :
+## 1. **Project Name :** Dragon News
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Access the live version of the project here:  [https://dragon-news-3f32a.web.app/category/01](https://dragon-news-3f32a.web.app/category/01)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+API Documentation: [Here are the endpoints used in this project.](https://github.com/ProgrammingHero1/dragon-news-resources/blob/main/readme.md)
+ 
+ ## 2. **React Fundamental concepts used :**
+- **Component-Based Architecture** 
+- **State Management with useState() and useEffect()**
+- **React Router**
+- **Conditional Rendering**
+- **Event Handling**
+- **React hot toast**
+- **React Rating star components**
+- **React icons**
+
+## 3. **Context API used:**
+
+In this project, I used Context API to pass data to various components. This way, user can access his desired data from any component he wants, giving a smooth experience every time.
+
+
+
+
+
+
