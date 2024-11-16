@@ -14,7 +14,6 @@ const Login = () => {
         const email = form.get('email')
         const password = form.get('password');
 
-        console.log(email, password);
         LoginUser(email, password)
             .then(res => {
                 setUser(res.user);

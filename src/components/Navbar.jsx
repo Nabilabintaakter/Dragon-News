@@ -5,7 +5,6 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
-    console.log(user);
     return (
         <div className='flex justify-between items-center font-poppins px-4 md:px-0'>
             <div >
@@ -15,6 +14,7 @@ const Navbar = () => {
                 <NavLink className='nav px-2 md:px-4 py-2 hover:bg-[#E7E7E7] rounded-lg' to='/'>Home</NavLink>
                 <NavLink className='nav px-2 md:px-4 py-2 hover:bg-[#E7E7E7] rounded-lg' to='/about'>About</NavLink>
                 <NavLink className='nav px-2 md:px-4 py-2 hover:bg-[#E7E7E7] rounded-lg' to='/career'>Career</NavLink>
+                <NavLink className='nav px-2 md:px-4 py-2 hover:bg-[#E7E7E7] rounded-lg' to='/dev'>Dev Info</NavLink>
             </div>
             <div className='flex items-center gap-3'>
                 {
