@@ -11,7 +11,7 @@ const Latest = () => {
             <p className='bg-[#D72050] text-white px-6 py-2 text-xl font-medium'>Latest</p>
             <Marquee className='font-semibold text-lg' pauseOnHover={true} speed={100}>
                 {
-                    latest.map((news,idx)=> <Link className='mr-10' key={idx} to={`/news/${news._id}`}>{news?.title}</Link>)
+                    latest?.map((news,idx)=> <Link className='mr-10' key={idx} to={`/news/${news._id}`}>{news?.title}</Link>)
                 }            
             </Marquee>
         </div>
