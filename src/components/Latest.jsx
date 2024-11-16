@@ -1,8 +1,10 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Latest = () => {
+    const data = useLoaderData();
+    console.log(data);
     return (
         <div className='flex items-center gap-5 bg-[#F3F3F3] p-4 mb-7 pr-6 md:pr-16'>
             <p className='bg-[#D72050] text-white px-6 py-2 text-xl font-medium'>Latest</p>

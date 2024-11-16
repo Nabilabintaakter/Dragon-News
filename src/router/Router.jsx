@@ -11,6 +11,7 @@ import MainSection from "../components/layoutComponents/mainSection";
 import AuthLayout from "../layout/AuthLayout";
 import Register from "../layout/Register";
 import NewsDetails from "../layout/NewsDetails";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -25,12 +26,13 @@ const router = createBrowserRouter([
                 path: '/category/:id',
                 element: <MainSection></MainSection>,
                 loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`)
-            }
+            },
+
         ]
     },
     {
         path: "/news/:id",
-        element: <NewsDetails></NewsDetails>,
+        element: <PrivateRoute><NewsDetails></NewsDetails></PrivateRoute>,
         loader: ({params})=> fetch(`https://openapi.programming-hero.com/api/news/${params.id}`)
     },
     {

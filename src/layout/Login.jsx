@@ -1,11 +1,13 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import toast from 'react-hot-toast';
 
 
 const Login = () => {
     const { LoginUser, setUser } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
     const handleLogin = (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
@@ -17,11 +19,13 @@ const Login = () => {
             .then(res => {
                 setUser(res.user);
                 toast.success('Successfully logged in to your account!');
+                setTimeout(()=>{
+                    navigate(location?.state ? location.state : '/')
+                    },1000);
             })
             .catch(err => {
-                console.log( "ERROR", err.message);
                 toast.error(err.message);
-                setUser(null)
+                setUser(null);
             })
     }
     return (
@@ -50,6 +54,9 @@ const Login = () => {
                             placeholder="Enter your password"
                             className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
+                    <label className="label">
+                        <a href="" className="label-text-alt link link-hover">Forgot password?</a>
+                    </label>
                     <div className="form-control my-6">
                         <button className="btn btn-neutral rounded-[5px] font-semibold text-xl">Login</button>
                     </div>

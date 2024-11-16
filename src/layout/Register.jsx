@@ -1,12 +1,13 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 
 
 const Register = () => {
-    const {createNewUser,setUser} = useContext(AuthContext);
-    const handleSubmit =(e)=>{
+    const { createNewUser, setUser,updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleSubmit = (e) => {
         e.preventDefault();
         // get form data
         const form = new FormData(e.target);
@@ -15,15 +16,29 @@ const Register = () => {
         const photo = form.get('photo')
         const password = form.get('password')
 
-        createNewUser(email,password)
-        .then(res=> {
-            setUser(res.user);
-            toast.success('Successfully registered!');
-        })
-        .catch(err=>{
-            toast.error(err.message);
-            setUser(null)
-        })
+        createNewUser(email, password)
+            .then(res => {
+                if (name.length < 5) {
+                    toast.error('Name must be more than 5 characters or long');
+                    setUser(null);
+                    return;
+                }
+                else {
+                    setUser(res.user);
+                    updateUserProfile({displayName: name, photoURL: photo})
+                    .then(res=>{
+                        navigate('/')
+                    })
+                    .catch(err=>{
+                        console.log(err.message);
+                    })
+                    toast.success('Successfully registered!');
+                }
+            })
+            .catch(err => {
+                toast.error(err.message);
+                setUser(null)
+            })
     }
     return (
         <div className='flex justify-center items-center min-h-[90vh]'>
@@ -35,41 +50,41 @@ const Register = () => {
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Your Name</span>
                         </label>
-                        <input 
-                        name="name"
-                        type="text"  
-                        placeholder="Enter your name" 
-                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Enter your name"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Photo URL</span>
                         </label>
-                        <input 
-                        name="photo"
-                        type="text" 
-                        placeholder="Enter your photo url" 
-                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name="photo"
+                            type="text"
+                            placeholder="Enter your photo url"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Email</span>
                         </label>
-                        <input 
-                        name="email"
-                        type="email" 
-                        placeholder="Enter your email address" 
-                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email address"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold text-[#403F3F] text-xl">Password</span>
                         </label>
-                        <input 
-                        name="password"
-                        type="password" 
-                        placeholder="Enter your password" 
-                        className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            className="input bg-[#F3F3F3] border-none rounded-[5px]" required />
                     </div>
                     <div className="form-control">
                         <label className="label justify-start gap-3 cursor-pointer">
